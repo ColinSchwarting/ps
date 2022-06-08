@@ -57,6 +57,7 @@ Display a list of Windows Firewall Rules.
 
 Create a new alias called "gh" for the cmdlet "Get-Help"
 >> new-alias gh Get-Help
+
 ACTIVITY THREE:------------------------------------------------------------
 Create a variable called "var1" that holds a random number between 25-50.
 >>$var1 = (get-random -Maximum 50 -Minimum 25) 
@@ -72,13 +73,13 @@ Create a variable called "quo" that holds the quotient of var1 and var2.
 $quo = $var1 / $var2  
 Replace the variables in text with their values in the following format:
 
-"var1" + "var2" = "sum"
+write-host "$var1" + "$var2" = "$sum"
 Replace the variables in text with their values in the following format:
 
-"var1" - "var2" = "sub"
+write-host "$var1" - "$var2" = "$sub"
 Replace the variables in text with their values in the following format:
 
-"var1" * "var2" = "prod"
+write-host "$var1" * "$var2" = "$prod"
 Replace the variables in text with their values in the following format:
 
-"var1" / "var2" = "quo"
+write-host "$var1" / "$var2" = "$quo"
