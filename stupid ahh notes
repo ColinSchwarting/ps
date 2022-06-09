@@ -1,0 +1,76 @@
+$array = @()
+[array]$more_arrays = $null
+$number_array = 1,2,3,4
+$seq_num_array = 1..10
+$seq_num_array[2]
+>>3
+$nested_array = 1, 2, 3, $array, 4
+$array = 5,6,7 
+$nested_array[3][1] 
+>> 6
+$array = (Get-Random -minimum -10 -maximum 1)..(Get-Random -minimum -1 -maximum 21)
+[array]::Reverse($array)
+
+$hashtable = @{videogame="Fallout 76" ; IsTrash = "Absolutely" ; ESRB_Rating = "M"; working="$False"}
+$ord_hash = [ordered]@{}
+$hashable.FirstName = "colin"
+to overwrite the key just assign it again
+$hastable.FirstName = "niloc"
+
+get-service | get-member
+
+get-command -verb Format << gets commands that help output be more readable
+  format-table
+  format-list
+  get-service | format-table *
+  get-service | format-list * << makes it readable
+  
+  write-host vs write-output  
+  
+  >get-service | sort-object -property status 
+  sort-object defaults to sort by ascii or numerical order
+  >get-service | group-object -property status
+  clumps things together based on what property is given
+  >get-service | where-object {$_.Status -eq 'Running'} | select-object -First 10
+  gets the first 10 running services
+  >Get-ChildItem | Measure-Object
+  counts the number of objects in the previous command
+ >'what is the answer to life the universe and everything?' > test.txt
+ >$before = Get-Childitem
+ '42' > test.txt
+ 
+comparision operators:
+2 -eq 2 > returns True 
+2 -eq 3 > returns False
+1,2,3 -eq 2 > returns '2'
+"abc" -eq "abc" > returns True
+"abc" -eq "abc", "def" > returns False 
+"abc", "def" -eq "abc" > returns 'abc'
+
+8 -gt 6 > returns True
+7, 8 , 9 -gt 8 > returns 9
+SO BASICALLY IF IT'S ONE THING EQUALS ANOTHER THING, ITLL RETURN TRUE, BUT IF IT'S A BUNCH OF THINGS IT'LL RETURN WHICHEVER THING IS TRUE
+
+"Inky" -like "*"
+"Blinky" -like "Bl?nky" 
+"Pinky" -like "[L-Q]inky"
+"Clyde" -like "[ABC]lyde"
+"Clyde" -notlike "[DEF]lyde"
+"C
+(($num -gt 5) -or ($num -lt 2))
+False
+
+
+>>Get-Process | Where-Object {$_.name -like 'power*'}
+ finds the powershell process
+ 
+ $val = 'Meg'
+Switch($val) {
+    Peter { "That's the father" }
+    Lois { "That's the mother" }
+    Stewie { "the baby" }
+    Chris { "That's the boy" }
+ 
+    default { "Shut up $val" }
+}
+     # $val is set to 'Meg' the switch will go through each statment and find the true one, in this case, none are true, so 'default' is selected
