@@ -74,3 +74,77 @@ Switch($val) {
     default { "Shut up $val" }
 }
      # $val is set to 'Meg' the switch will go through each statment and find the true one, in this case, none are true, so 'default' is selected
+     
+   while(condition) {
+   code block to be executed
+   }
+   
+   do{
+    code block
+    }while(condition << alows the code to run at least once before checking codition
+    
+    for($i = 0; $i -l 255; $i++) {
+    write-host 192.168.0.$i
+    
+    
+    foreach(variable in Get-Childiem c:\ -Recurse) {
+    $item.name
+    }
+  
+    foreach ( $item in Get-childitem C:\ -Recurse | foreach-object {$_>.Name}
+    
+    $num = 0
+    while($num -lt 10) {
+    $num += 1
+    if($num -eq 5) {
+      break 
+      }
+      }
+    $num >>  5
+    
+        $num = 0
+    while($num -lt 4) {
+    $num += 1
+    if($num -eq 2) {
+      continue 
+     }
+      }
+    $num >> will print 1 , 3, 4
+
+for writing files and such:
+set-content -path .\example.txt -value "A string"
+get-content .\example.txt > A string
+add-content -path .\example.txt -value "B string"
+get-content .\example.txt > A string
+                            B string
+                            
+TO DECLARE A FUNCTION:
+function <function name> { <function code goes here> }
+ex: function Hello-World { 'Hello World!' }
+to call on a function just say the name of the function
+
+>Hello-World
+>Hello World!                           
+
+to list all functions: gci function:*
+to see what any given function does:
+Get-content function:<name of function>
+function <function name> (<$parameter name>) { <function code goes here> }
+
+function basic-parameter ($value) {
+is ($value) {
+      write-host "The parameter is $value -For
+      
+function <function name> ($parameter1, parameter2) {function code}
+
+function Many-Params ($value1, $value2) {
+if ($value1 -gt $value2){
+  Write-host "$value1" -Foreground Green -NoNewline
+  Write-host "is e
+  
+  
+$parameter1='<default val,$paramter2='<default value>'
+
+switch parameters are boolean in nanture
+
+if ($switchPro) 
