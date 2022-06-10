@@ -175,6 +175,35 @@ swtich($modelnum) {
   }
   }
   
-  ACTIVITY NINE:----------------------------------------------------
-  $procs = "notepad", "msedge"
-    
+  ACTIVITY TEN:-----------------------------------------------------------
+        -----------------------#get ordinal date
+    function date {
+    $today = Get-Date
+    $Jan1 = Get-Date 1/1
+    $Julian = ($today - $Jan1).days + 1
+
+   Write-Output $Julian
+    }
+   
+   ---------------------- #square a number
+    function square($n) 
+    {
+        $wtf= $n * $n
+        return $wtf
+        }
+   ------------- # get the product of three arguments 
+    function Get-Product($a, $b, $c)
+
+    {
+        $ligma = $a * $b * $c
+        return $ligma
+        }
+------------------- # get the length of hypotenuse
+
+
+   function find-hypo($a, $b){
+   
+   $c2 = $a * $a + $b * $b
+   [math]::Sqrt($c2)
+   }
+   
