@@ -83,3 +83,98 @@ write-host "$var1" * "$var2" = "$prod"
 Replace the variables in text with their values in the following format:
 
 write-host "$var1" / "$var2" = "$quo"
+
+ACTIVITY FOUR:----------------------------------------------------------
+Create an array containing a range with a random starting and stopping point.  The starting point will be a random number from -10 through 0.
+The ending point will be a random number from 1 through 20:
+
+$array = (Get-Random -minimum -10 -maximum 1)..(Get-Random -minimum -1 -maximum 21)
+
+Create a variable that contains the contents of the array in reverse:
+
+[array]::Reverse($array)
+
+ACTIVITY SIX:-------------------------------------------------------------
+Display the start time of the earliest and latest running processes
+
+>Get-Process | Where-Object{$_.StartTime} | Measure-Object -Property StartTime -Minimum -Maximum | Select-Object -Property Minimum, Maximum
+
+Identify a cmdlet that returns the current date and time then using this cmdlet and Select-object, display only the current day of the week
+
+get-date | select -property Dayofweek
+
+Identify a cmdlet that displays a list of installed hotfixes.
+
+>get-hotfix
+
+Extend the expression to sort the list by install date, and display only the install date and hotfix ID.
+
+>get-hotfix | Where-Object -Property InstalledOn | sort-object -Property InstalledOn | Select-Object HotFixID,InstalledOn  
+
+Extend the expression further, but this time sort by description, include description, hotfix ID, and install Date.
+
+>get-hotfix | Where-Object -Property InstalledOn | Select-Object HotFixID,InstalledOn,Description | sort-object -Property Description
+
+ACTIVITY SEVEN:----------------------------------------------------------
+Create a custom object that contains information about the host system using the following:
+
+Win32_ComputerSystem
+Win32_BIOS
+Win32_OperatingSystem
+Win32_LogicalDisk
+
+Use the cmdlet Get-WmiObject to obtain the needed information:
+
+$customobject = New-Object Object
+Add-Member -MemberType NoteProperty -name Version -value (Get-WmiObject Win32_OperatingSystem).version -InputObject $customobject
+Add-Member -MemberType NoteProperty -name OperatingSystem -value (Get-WmiObject Win32_operatingsystem).caption -InputObject $customobject
+Add-Member -MemberType NoteProperty -name Manufacturer -value (Get-WmiObject Win32_BIOS).manufacturer -InputObject $customobject
+Add-Member -MemberType NoteProperty -name Disks -Value (get-wmiobject Win32_LogicalDisk) -InputObject $customobject
+Add-Member -MemberType NoteProperty -name ComputerName -value (Get-WmiObject Win32_ComputerSystem).name -InputObject $customobject
+
+$customobject | format-list
+
+ACTIVITY EIGHT:--------------------------------------------------------------
+Find and extract the model number from the provided lines of text. If there isn’t a model number then display to the user that a model number wasn’t found
+
+Check both lines for model numbers and report individually the line and model number if found.
+
+Use the following variables for your script
+
+EXAMPLE OF IF STATEMENT----------------------------------------------------
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
+$modelnum = '([A-Z]{2})(\d{4})'
+if ( $line1 -match $modelnum )
+   {
+    echo $matches[0] 
+}
+elseif ( $line2 -match $modelnum )
+    {
+        echo $matches[0]
+        }
+else {
+    echo "Model number not found"
+}
+
+EXAMPLE OF SWITCH STATEMENT-----------------------------------------------
+$line1 = "Do you have model number: MT5437 for john.doe@sharklasers.com?"
+$line2 = "What model number for john.doe@sharklasers.com?"
+$modelnum = '([A-Z]{2})(\d{4})'
+swtich($modelnum) {
+{$line1 -match $_ } {
+  $model = $Matches[0]
+  "the model number is $model and it's on line 1" }
+  { $line2 -match $_ } {
+  $model = $Matches[0]
+  "yes model number is $model and it's on line 2"}
+  { $line1 -nomatch $_ } {
+  "There is no model number in line 1" }
+  { $line2 -nomatch $_ } {
+  "There is no model number in line 2"
+  }
+  }
+  
+  ACTIVITY NINE:----------------------------------------------------
+  $procs = "notepad", "msedge"
+    
