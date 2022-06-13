@@ -117,5 +117,57 @@ function q10 ($filepath,$lasthash) {
        return (Get-FileHash $filepath).hash -ne $lasthash
 
 }
+-------------------------------------------------------------------------------------
+READ A FILE LINE BY LINE AND COUNT EACH LINE
+$content = Get-Content .\random_sentences.txt
+$count = 0
+foreach ( $line -in $content ) {
+
+  write-host $count -nonewline; write-host $line; $count++
+
+}
+
+----------------------------------------------------
+READ FILE LINE BY LINE AND ONLY PRINT CERTAIN LINES
+$content = Get-Content .\random_sentences.txt
+
+foreach ( $line -in $content ) {
+	if ($line.startswith("It's")) {
+            $line.replace("not", "100%") #this replaces instances of "not" that are in sentences starting with "It's" with "100%"
+	write-host $line
+	}
+	
+-----------------------------------------------------------------
+JOIN AN ARRAY OF STRINGS TOGETHER
+$array_of_words -join  ("-") #links all the words together linked by a "-"
+-------------------------------------------------------------
+READS USER INPUT AND EXITS IF USER DOESN'T INPUT ANYTHING, RECORDS ALL USER INPUT THAT'S NOT EMPTY
+$values = @()
+Do { 
+$user_input = read-host
+if ($user_input.length -ne 0) {
+    $values += $user_input 
+} until ($user_input.length -eq 0)
+
+($values | sort -property length -Descending)[0]
+--------------------------------------------------------------------------
+get-process | select * | where { ($_.name).startswith("power") }
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
